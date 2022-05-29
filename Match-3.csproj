@@ -55,6 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BlueGem.cs" />
+    <Compile Include="GameCore.cs" />
+    <Compile Include="GreenGem.cs" />
+    <Compile Include="RedGem.cs" />
+    <Compile Include="Vector2.cs" />
+    <Compile Include="Vector2Int.cs" />
+    <Compile Include="VioletGem.cs" />
+    <Compile Include="YellowGem.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -64,6 +72,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CanvasDrawer.cs" />
+    <Compile Include="Cell.cs" />
+    <Compile Include="Gem.cs" />
+    <Compile Include="GemType.cs" />
+    <Compile Include="Grid.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
