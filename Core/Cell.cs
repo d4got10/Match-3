@@ -12,5 +12,6 @@ namespace Match_3.Core
 
         public Vector2Int Position { get; }
         public Gem ContainedGem { get; set; }
+        public bool IsEmpty => ContainedGem == null;
     }
 }

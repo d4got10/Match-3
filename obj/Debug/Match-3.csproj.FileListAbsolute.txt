@@ -1,0 +1,15 @@
+C:\Users\rusbe\source\repos\Match-3\bin\Debug\Match-3.exe.config
+C:\Users\rusbe\source\repos\Match-3\bin\Debug\Match-3.exe
+C:\Users\rusbe\source\repos\Match-3\bin\Debug\Match-3.pdb
+C:\Users\rusbe\source\repos\Match-3\obj\Debug\Match-3.csproj.AssemblyReference.cache
+C:\Users\rusbe\source\repos\Match-3\obj\Debug\MainWindow.g.cs
+C:\Users\rusbe\source\repos\Match-3\obj\Debug\App.g.cs
+C:\Users\rusbe\source\repos\Match-3\obj\Debug\Match-3_MarkupCompile.cache
+C:\Users\rusbe\source\repos\Match-3\obj\Debug\Match-3_MarkupCompile.lref
+C:\Users\rusbe\source\repos\Match-3\obj\Debug\MainWindow.baml
+C:\Users\rusbe\source\repos\Match-3\obj\Debug\Match-3.g.resources
+C:\Users\rusbe\source\repos\Match-3\obj\Debug\Match_3.Properties.Resources.resources
+C:\Users\rusbe\source\repos\Match-3\obj\Debug\Match-3.csproj.GenerateResource.cache
+C:\Users\rusbe\source\repos\Match-3\obj\Debug\Match-3.csproj.CoreCompileInputs.cache
+C:\Users\rusbe\source\repos\Match-3\obj\Debug\Match-3.exe
+C:\Users\rusbe\source\repos\Match-3\obj\Debug\Match-3.pdb

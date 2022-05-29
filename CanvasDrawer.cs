@@ -24,9 +24,9 @@ namespace Match_3
             Target.Children.Remove(element);
         }
 
-        public void SetUIElementPosition(UIElement element, int x, int y)
+        public void SetUIElementPosition(UIElement element, float x, float y)
         {
-            Canvas.SetTop(element, y);
+            Canvas.SetBottom(element, y);
             Canvas.SetLeft(element, x);
         }
     }

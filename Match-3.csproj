@@ -14,6 +14,21 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -55,14 +70,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BlueGem.cs" />
-    <Compile Include="GameCore.cs" />
-    <Compile Include="GreenGem.cs" />
-    <Compile Include="RedGem.cs" />
-    <Compile Include="Vector2.cs" />
-    <Compile Include="Vector2Int.cs" />
-    <Compile Include="VioletGem.cs" />
-    <Compile Include="YellowGem.cs" />
+    <Compile Include="Core\Gems\BlueGem.cs" />
+    <Compile Include="Core\GameCore.cs" />
+    <Compile Include="Core\Gems\GreenGem.cs" />
+    <Compile Include="Core\Gems\RedGem.cs" />
+    <Compile Include="Realization\AnimationSystem.cs" />
+    <Compile Include="Realization\GemFactoryWithViews.cs" />
+    <Compile Include="Realization\GemView.cs" />
+    <Compile Include="Realization\GemViewsContainer.cs" />
+    <Compile Include="Realization\GenerationSystem.cs" />
+    <Compile Include="Core\IAnimationSystem.cs" />
+    <Compile Include="Core\IGenerationSystem.cs" />
+    <Compile Include="Core\IMatchSystem.cs" />
+    <Compile Include="Core\IScoreService.cs" />
+    <Compile Include="Core\ISheddingSystem.cs" />
+    <Compile Include="Core\ITimeProvider.cs" />
+    <Compile Include="Core\Utils\Vector2.cs" />
+    <Compile Include="Core\Utils\Vector2Int.cs" />
+    <Compile Include="Core\Gems\VioletGem.cs" />
+    <Compile Include="Core\Gems\YellowGem.cs" />
+    <Compile Include="Realization\IGemFactory.cs" />
+    <Compile Include="Realization\IGemViewsContainer.cs" />
+    <Compile Include="Realization\MatchSystem.cs" />
+    <Compile Include="Realization\SheddingSystem.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,10 +102,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CanvasDrawer.cs" />
-    <Compile Include="Cell.cs" />
-    <Compile Include="Gem.cs" />
-    <Compile Include="GemType.cs" />
-    <Compile Include="Grid.cs" />
+    <Compile Include="Core\Cell.cs" />
+    <Compile Include="Core\Gems\Gem.cs" />
+    <Compile Include="Core\Gems\GemType.cs" />
+    <Compile Include="Core\GameGrid.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -106,6 +136,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Blue.png" />
+    <Resource Include="Assets\Green.png" />
+    <Resource Include="Assets\Red.png" />
+    <Resource Include="Assets\Violet.png" />
+    <Resource Include="Assets\Yellow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
