@@ -1,19 +1,22 @@
 ﻿using Match_3.Core;
 using Match_3.Core.Gems;
+using Match_3.Core.Utils;
 using System;
 
 namespace Match_3.Realization
 {
     public class GenerationSystem : IGenerationSystem
     {
-        public GenerationSystem(IGemFactory gemFactory)
+        public GenerationSystem(IGemFactory gemFactory, IAnimationSystem animationSystem)
         {
             GemFactory = gemFactory;
+            AnimationSystem = animationSystem;
             Random = new Random();
         }
 
 
         private IGemFactory GemFactory { get; }
+        private IAnimationSystem AnimationSystem { get; }
         private Random Random { get; }
 
 
@@ -27,6 +30,7 @@ namespace Match_3.Realization
 
                 var gem = CreateGem();
                 cell.ContainedGem = gem;
+                AnimationSystem.AnimateAppearence(gem, new Vector2Int(x, grid.Size.Y - 1));
             }
         }
 

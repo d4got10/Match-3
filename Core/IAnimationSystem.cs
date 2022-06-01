@@ -5,13 +5,18 @@ namespace Match_3.Core
 {
     public interface IAnimationSystem
     {
+        event System.Action AnimationStarted;
+        event System.Action AnimationEnded;
         void Start();
-        void Pause();
+        void End();
         void Tick(ITimeProvider timeProvider);
+        void Pause();
         void Resume();
-        void Unload();
         void AnimateSelection(Gem target);
-        void AnimateSwap(Gem first, Gem second);
+        void AnimateSuccessfulSwap(Gem first, Gem second);
+        void AnimateFailedSwap(Gem first, Gem second);
         void AnimateMovement(Gem target, Vector2Int from, Vector2Int to);
+        void AnimateAppearence(Gem target, Vector2Int position);
+        void AnimateDestruction(Gem target);
     }
 }

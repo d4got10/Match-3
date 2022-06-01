@@ -2,6 +2,6 @@
 {
     public interface ISheddingSystem
     {
-        void Move(GameGrid grid);
+        bool Shed(GameGrid grid);
     }
 }

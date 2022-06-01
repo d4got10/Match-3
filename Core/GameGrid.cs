@@ -20,5 +20,11 @@ namespace Match_3.Core
 
 
         private Cell[,] _data;
+
+
+        public bool PositionIsInsidePlayableGrid(Vector2Int position)
+        {
+            return position.X >= 0 && position.X < Size.X && position.Y >= 0 && position.Y < Size.Y - 1;
+        }
     }
 }

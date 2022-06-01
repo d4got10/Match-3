@@ -70,11 +70,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\GameCoreDependecies.cs" />
     <Compile Include="Core\Gems\BlueGem.cs" />
     <Compile Include="Core\GameCore.cs" />
     <Compile Include="Core\Gems\GreenGem.cs" />
     <Compile Include="Core\Gems\RedGem.cs" />
-    <Compile Include="Realization\AnimationSystem.cs" />
+    <Compile Include="Core\ISelectionSystem.cs" />
+    <Compile Include="Core\ISwappingSystem.cs" />
+    <Compile Include="Realization\Animation\AnimationBehaviour.cs" />
+    <Compile Include="Realization\Animation\AnimationSystem.cs" />
+    <Compile Include="Realization\Animation\Destruction.cs" />
+    <Compile Include="Realization\Animation\DurationSettings.cs" />
+    <Compile Include="Realization\Animation\Movement.cs" />
+    <Compile Include="Realization\Animation\Selection.cs" />
+    <Compile Include="Realization\SelectionSystem.cs" />
     <Compile Include="Realization\GemFactoryWithViews.cs" />
     <Compile Include="Realization\GemView.cs" />
     <Compile Include="Realization\GemViewsContainer.cs" />
@@ -92,7 +101,10 @@
     <Compile Include="Realization\IGemFactory.cs" />
     <Compile Include="Realization\IGemViewsContainer.cs" />
     <Compile Include="Realization\MatchSystem.cs" />
+    <Compile Include="Realization\Settings.cs" />
     <Compile Include="Realization\SheddingSystem.cs" />
+    <Compile Include="Core\Utils\PositionUtils.cs" />
+    <Compile Include="Realization\SwappingSystem.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

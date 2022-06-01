@@ -14,8 +14,10 @@ namespace Match_3.Realization
         private IAnimationSystem AnimationSystem { get; }
 
 
-        public void Move(GameGrid grid)
+        public bool Shed(GameGrid grid)
         {
+            bool moved = false;
+
             for(int y = 0; y < grid.Size.Y - 1; y++)
             {
                 for(int x = 0; x < grid.Size.X; x++)
@@ -28,8 +30,12 @@ namespace Match_3.Realization
                     grid[x, y].ContainedGem = gem;
                     grid[x, y + 1].ContainedGem = null;
                     AnimationSystem.AnimateMovement(gem, new Vector2Int(x, y + 1), new Vector2Int(x, y));
+
+                    moved = true;
                 }
             }
+
+            return moved;
         }
     }
 }

@@ -29,5 +29,15 @@ namespace Match_3
             Canvas.SetBottom(element, y);
             Canvas.SetLeft(element, x);
         }
+
+        public void FocusElement(UIElement element)
+        {
+            Canvas.SetZIndex(element, 1);
+        }
+
+        public void UnfocusElement(UIElement element)
+        {
+            Canvas.SetZIndex(element, 0);
+        }
     }
 }

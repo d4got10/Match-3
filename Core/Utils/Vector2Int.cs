@@ -16,5 +16,7 @@ namespace Match_3.Core.Utils
         public static implicit operator Vector2(Vector2Int vector) => new Vector2(vector.X, vector.Y);
         public static Vector2Int operator *(Vector2Int vector, float value) => new Vector2Int((int)(vector.X * value), (int)(vector.Y * value));
         public static Vector2Int operator *(float value, Vector2Int vector) => new Vector2Int((int)(vector.X * value), (int)(vector.Y * value));
+        public static Vector2Int operator +(Vector2Int first, Vector2Int second) => new Vector2Int(second.X + first.X, second.Y + first.Y);
+        public static Vector2Int operator -(Vector2Int first, Vector2Int second) => new Vector2Int(second.X - first.X, second.Y - first.Y);
     }
 }

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Match_3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="768"
+        Title="MainWindow" Height="551" Width="528"
         Loaded="OnMainWindowLoaded">
-    <Canvas x:Name="GameCanvas" Background="Black">
+    <Canvas x:Name="GameCanvas" Background="Black" MouseDown="GameCanvas_MouseDown">
     </Canvas>
 </Window>
