@@ -81,8 +81,10 @@
     <Compile Include="Realization\Animation\AnimationSystem.cs" />
     <Compile Include="Realization\Animation\Destruction.cs" />
     <Compile Include="Realization\Animation\DurationSettings.cs" />
+    <Compile Include="Realization\Animation\FailedSwap.cs" />
     <Compile Include="Realization\Animation\Movement.cs" />
     <Compile Include="Realization\Animation\Selection.cs" />
+    <Compile Include="Realization\Animation\SuccessfulSwap.cs" />
     <Compile Include="Realization\SelectionSystem.cs" />
     <Compile Include="Realization\GemFactoryWithViews.cs" />
     <Compile Include="Realization\GemView.cs" />

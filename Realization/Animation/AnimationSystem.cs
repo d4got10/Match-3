@@ -64,10 +64,26 @@ namespace Match_3.Realization.Animation
 
         public void AnimateSuccessfulSwap(Gem first, Gem second)
         {
+            var duration = DurationSettings.Swap;
+            AddAnimationDuration(duration);
+
+            var firstView = ViewsContainer.GetView(first);
+            var secondView = ViewsContainer.GetView(second);
+
+            var animation = new SuccessfulSwap(firstView, secondView, duration, OnAnimationEnded);
+            AddAnimation(animation);
         }
 
         public void AnimateFailedSwap(Gem first, Gem second)
         {
+            var duration = DurationSettings.Swap;
+            AddAnimationDuration(duration);
+
+            var firstView = ViewsContainer.GetView(first);
+            var secondView = ViewsContainer.GetView(second);
+
+            var animation = new FailedSwap(firstView, secondView, duration, OnAnimationEnded);
+            AddAnimation(animation);
         }
 
         public void AnimateDestruction(Gem target)
@@ -102,6 +118,8 @@ namespace Match_3.Realization.Animation
                 animation.End();
 
             RemoveEndedAnimations();
+
+            RemainingAnimationsDuration = 0;
 
             AnimationEnded?.Invoke();
         }

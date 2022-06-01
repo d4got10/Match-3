@@ -1,5 +1,6 @@
 ﻿using Match_3.Core;
 using Match_3.Core.Utils;
+using System;
 
 namespace Match_3.Realization
 {
@@ -21,7 +22,10 @@ namespace Match_3.Realization
             var firstCell = grid[first];
             var secondCell = grid[second];
 
-            if (firstCell.ContainedGem.Type == secondCell.ContainedGem.Type)
+            var dir = first - second;
+
+
+            if (Math.Abs(dir.X) + Math.Abs(dir.Y) == 1)
             {
                 SwapSuccessfuly(firstCell, secondCell);
                 return true;

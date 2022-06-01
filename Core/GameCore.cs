@@ -35,6 +35,7 @@ namespace Match_3.Core
 
         private GameGrid _grid;
         private bool _animationEnded;
+        private bool _swaped;
 
 
         public void Tick(float time)
@@ -63,14 +64,6 @@ namespace Match_3.Core
             _grid = new GameGrid(GridSize);
 
             IsRunning = true;
-
-            //for (int y = 0; y < GridSize.Y; y++)
-            //{
-            //    GenerationSystem.Generate(_grid);
-            //    SheddingSystem.Move(_grid);
-            //}
-
-            //AnimationSystem.Start();
         }
 
         public void Pause()
@@ -98,22 +91,25 @@ namespace Match_3.Core
                 var cell = _grid[cellPosition];
                 if (SelectionSystem.Selected == cell) return;
 
+                AnimationSystem.End();
                 if (SelectionSystem.Selected == null)
                 {
                     SelectionSystem.Select(_grid[cellPosition]);
                 }
                 else
                 {
-                    SwappingSystem.Swap(_grid, SelectionSystem.Selected.Position, cellPosition);
-                    AnimationSystem.End();
-                    SelectionSystem.Deselect();
-                    AnimationSystem.Start();
+                    if(SwappingSystem.Swap(_grid, SelectionSystem.Selected.Position, cellPosition))
+                    {
+                        _swaped = true; //TODO
+                        SelectionSystem.Deselect();
+                        AnimationSystem.Start();
+                    }
                 }
             }
             else
             {
-                SelectionSystem.Deselect();
                 AnimationSystem.End();
+                SelectionSystem.Deselect();
             }
         }
 
