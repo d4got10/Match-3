@@ -75,8 +75,10 @@
     <Compile Include="Core\GameCore.cs" />
     <Compile Include="Core\Gems\GreenGem.cs" />
     <Compile Include="Core\Gems\RedGem.cs" />
+    <Compile Include="Core\IScoreSystem.cs" />
     <Compile Include="Core\ISelectionSystem.cs" />
     <Compile Include="Core\ISwappingSystem.cs" />
+    <Compile Include="MyGame.cs" />
     <Compile Include="Realization\Animation\AnimationBehaviour.cs" />
     <Compile Include="Realization\Animation\AnimationSystem.cs" />
     <Compile Include="Realization\Animation\Destruction.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="Realization\Animation\Movement.cs" />
     <Compile Include="Realization\Animation\Selection.cs" />
     <Compile Include="Realization\Animation\SuccessfulSwap.cs" />
+    <Compile Include="Realization\ScoreSystem.cs" />
     <Compile Include="Realization\SelectionSystem.cs" />
     <Compile Include="Realization\GemFactoryWithViews.cs" />
     <Compile Include="Realization\GemView.cs" />
@@ -93,7 +96,6 @@
     <Compile Include="Core\IAnimationSystem.cs" />
     <Compile Include="Core\IGenerationSystem.cs" />
     <Compile Include="Core\IMatchSystem.cs" />
-    <Compile Include="Core\IScoreService.cs" />
     <Compile Include="Core\ISheddingSystem.cs" />
     <Compile Include="Core\ITimeProvider.cs" />
     <Compile Include="Core\Utils\Vector2.cs" />

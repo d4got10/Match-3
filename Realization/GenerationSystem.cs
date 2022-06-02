@@ -42,7 +42,7 @@ namespace Match_3.Realization
                 GemType.Blue,
                 GemType.Yellow,
                 GemType.Green,
-                GemType.Blue
+                GemType.Violet
             };
 
             var type = gemTypes[Random.Next() % gemTypes.Length];

@@ -126,8 +126,6 @@ namespace Match_3.Realization.Animation
             AnimationEnded?.Invoke();
         }
 
-       
-
         public void Tick(ITimeProvider timeProvider)
         {
             float deltaTime = timeProvider.DeltaTime;

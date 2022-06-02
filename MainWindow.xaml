@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Match_3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="551" Width="528"
-        Loaded="OnMainWindowLoaded">
-    <Canvas x:Name="GameCanvas" Background="Black" MouseDown="GameCanvas_MouseDown">
+        Title="MainWindow" Height="551" Width="815.115"
+        Loaded="OnMainWindowLoaded"
+        ResizeMode="NoResize" Background="#FFA672F1">
+    <Canvas x:Name="GameCanvas" Background="Black" MouseDown="GameCanvas_MouseDown" Margin="0,0,287,0">
+        <Label Content="Match 3" Canvas.Left="596" Canvas.Top="10" Height="60" Width="186" Foreground="White" FontSize="36" FontWeight="Bold"/>
+        <Label Content="Score:" Canvas.Left="529" Canvas.Top="98" Height="54" Width="114" Foreground="White" FontSize="36"/>
+        <Label x:Name="ScoreText" Content="0" Canvas.Left="643" Canvas.Top="98" Height="54" Width="139" Foreground="White" FontSize="36"/>
+        <Button x:Name="GameButton" Content="Play" Canvas.Left="583" Canvas.Top="423" Width="170" Height="48" FontSize="24"/>
+        <Label x:Name="GameText" Content="Game over" Canvas.Left="552" Canvas.Top="258" Height="76" Width="230" Foreground="White" FontSize="36"/>
     </Canvas>
 </Window>

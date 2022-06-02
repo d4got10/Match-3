@@ -8,5 +8,6 @@
         public IAnimationSystem AnimationSystem { get; set; }
         public ISelectionSystem SelectionSystem { get; set; }
         public ISwappingSystem SwappingSystem { get; set; }
+        public IScoreSystem ScoreSystem { get; set; }
     }
 }

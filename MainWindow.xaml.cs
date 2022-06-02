@@ -1,16 +1,5 @@
 ﻿using Match_3.Core;
-using Match_3.Core.Utils;
-using Match_3.Realization;
-using Match_3.Realization.Animation;
-using Match_3.Utils;
-using System;
-using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 
 namespace Match_3
 {
@@ -19,78 +8,134 @@ namespace Match_3
         public MainWindow()
         {
             InitializeComponent();
-            Drawer = new CanvasDrawer(GameCanvas);
         }
 
 
-        private readonly CanvasDrawer Drawer;
-        private GameCore _core;
-        private IGemViewsContainer _viewsContainer;
-        private float _time;
-        private Settings _settings;
+        private const float GameTime = 60f;
+
+
+        private MyGame _game;
+        private GameStates _state;
 
         private void OnMainWindowLoaded(object sender, System.EventArgs e)
         {
-            _time = 0;
-
-            _settings = new Settings { CellSize = 64 };
-
-            var animationDurationSettings = new DurationSettings { Appearence = 0f, Movement = 0.25f, Swap = 0.5f, Destruction = 0.5f };
-
-            var gemViewsContainer = new GemViewsContainer();
-            _viewsContainer = gemViewsContainer;
-            var gemFactory = new GemWithViewsFactory(Drawer, gemViewsContainer, _settings);
-
-            var animationSystem = new AnimationSystem(gemViewsContainer, _settings, animationDurationSettings);
-            var generationSystem = new GenerationSystem(gemFactory, animationSystem);
-            var sheddingSystem = new SheddingSystem(animationSystem);
-            var matchSystem = new MatchSystem(animationSystem);
-            var selectionSystem = new SelectionSystem(animationSystem);
-            var swappingSystem = new SwappingSystem(animationSystem);
-
-            var dependencies = new GameCoreDependecies
-            {
-                AnimationSystem = animationSystem,
-                GenerationSystem = generationSystem,
-                SheddingSystem = sheddingSystem,
-                SelectionSystem = selectionSystem,
-                MatchSystem = matchSystem,
-                SwappingSystem = swappingSystem,
-            };
-
-            _core = new GameCore(new Vector2Int(8, 9), dependencies);
-
-            _core.Start();
-
-            TickLoop(1);
+            GameButton.Click += OnGameButtonClick;
+            OnStateChanged(_state);
         }
 
-        private async void TickLoop(int interval)
+        private void OnGameButtonClick(object sender, RoutedEventArgs e)
         {
-            while (true)
+            switch (_state)
             {
-                var time = DateTime.Now;
-                await Task.Delay(interval);
-                var delta = DateTime.Now - time;
-                OnTimerTick((float)delta.TotalSeconds);
+                case GameStates.Unloaded:
+
+                    _game = new MyGame(GameCanvas);
+                    _game.Load();
+                    _game.Ticked += OnGameTicked;
+                    _game.ScoreChanged += OnGameScoreChanged;
+                    SetScore(0);
+                    SetState(GameStates.Running);
+
+                    break;
+                case GameStates.Running:
+                    break;
+                case GameStates.Completed:
+
+                    _game.Ticked -= OnGameTicked;
+                    _game.Unload();
+                    SetState(GameStates.Unloaded);
+
+                    break;
             }
         }
 
-        private void OnTimerTick(float interval)
+        
+        private void OnGameTicked(ITimeProvider timeProvider)
         {
-            _time += interval;
-            _core.Tick(_time);
+            if (_state != GameStates.Running) return;
+
+            float remainingTime = GameTime - timeProvider.Time;
+            if(remainingTime < 0)
+            {
+                SetState(GameStates.Completed);
+                return;
+            }
+
+            ShowGameText(string.Format("Timer: {0:0.00}", remainingTime));
         }
+
+        private void OnGameScoreChanged(int score)
+        {
+            SetScore(score);
+        }
+
 
         private void GameCanvas_MouseDown(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            var point = Mouse.GetPosition(GameCanvas);
+            if (_state != GameStates.Running) return;
 
-            var position = new Vector2((float)point.X, (float)point.Y);
-            var cellPosition = PositionUtils.ConvertWorldToGridPosition(position, _settings);
-            cellPosition.Y = _core.GridSize.Y - 2 - cellPosition.Y;
+            _game?.OnMouseDown();
+        }
 
-            _core.OnClick(cellPosition);
+
+        private void SetState(GameStates state)
+        {
+            if (_state == state) return;
+
+            _state = state;
+            OnStateChanged(_state);
+        }
+
+        private void OnStateChanged(GameStates state)
+        {
+            switch (state)
+            {
+                case GameStates.Unloaded:
+                    ShowGameButton("Play");
+                    HideGameText();
+                    break;
+                case GameStates.Running:
+                    HideGameButton();
+                    ShowGameText("Timer: 0");
+                    break;
+                case GameStates.Completed:
+                    ShowGameText("Game over!");
+                    ShowGameButton("Ok");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void SetScore(int score)
+        {
+            ScoreText.Content = score.ToString();
+        }
+        private void ShowGameText(string text)
+        {
+            GameText.Visibility = Visibility.Visible;
+            GameText.Content = text;
+        }
+        private void HideGameText()
+        {
+            GameText.Visibility = Visibility.Hidden;
+        }
+        private void ShowGameButton(string text)
+        {
+            GameButton.Visibility = Visibility.Visible;
+            GameButton.Content = text;
+        }
+        private void HideGameButton()
+        {
+            GameButton.Visibility = Visibility.Hidden;
+        }
+
+
+        private enum GameStates
+        {
+            Unloaded,
+            Running,
+            Completed
         }
     }
 }

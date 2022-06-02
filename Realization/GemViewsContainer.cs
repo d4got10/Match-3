@@ -21,5 +21,14 @@ namespace Match_3.Realization
         {
             _viewsMap.Remove(view.Gem);
         }
+
+        public void Unload()
+        {
+            foreach(var view in _viewsMap.Values)
+            {
+                view.Unload();
+            }
+            _viewsMap.Clear();
+        }
     }
 }

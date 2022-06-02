@@ -2,18 +2,19 @@
 using Match_3.Core.Gems;
 using Match_3.Core.Utils;
 using System.Collections.Generic;
-using System.Windows.Controls;
 
 namespace Match_3.Realization
 {
     public class MatchSystem : IMatchSystem
     {
-        public MatchSystem(IAnimationSystem animationSystem)
+        public MatchSystem(IAnimationSystem animationSystem, IScoreSystem scoreSystem)
         {
             AnimationSystem = animationSystem;
+            ScoreSystem = scoreSystem;
         }
 
         protected IAnimationSystem AnimationSystem { get; }
+        protected IScoreSystem ScoreSystem { get; }
 
 
         public bool DestroyMatches(GameGrid grid)
@@ -36,6 +37,7 @@ namespace Match_3.Realization
         {
             foreach (var cluster in matches)
             {
+                ScoreSystem.AddScore(cluster);
                 foreach (var cell in cluster)
                 {
                     if (cell.IsEmpty == false)
