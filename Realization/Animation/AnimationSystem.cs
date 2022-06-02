@@ -106,6 +106,8 @@ namespace Match_3.Realization.Animation
 
         public void Start()
         {
+            if (_animations.Count == 0) return;
+
             foreach (var animation in _animations)
                 animation.Start();
 

@@ -48,8 +48,14 @@ namespace Match_3.Core
             if (_animationEnded)
             {
                 GenerationSystem.Generate(_grid);
-                if(SheddingSystem.Shed(_grid) == false)
-                    MatchSystem.DestroyMatches(_grid);
+                if (SheddingSystem.Shed(_grid) == false)
+                {
+                    if (MatchSystem.DestroyMatches(_grid) == false && _swaped)
+                    {
+                        SwappingSystem.FailLastSwap(_grid);
+                    }
+                    _swaped = false;
+                }
 
                 AnimationSystem.Start();
             }
@@ -86,6 +92,9 @@ namespace Match_3.Core
 
         public void OnClick(Vector2Int cellPosition)
         {
+            if (IsRunning == false) return;
+            if (SelectionSystem.Selected == null && _animationEnded == false) return;
+
             if (_grid.PositionIsInsidePlayableGrid(cellPosition))
             {
                 var cell = _grid[cellPosition];
@@ -98,11 +107,15 @@ namespace Match_3.Core
                 }
                 else
                 {
-                    if(SwappingSystem.Swap(_grid, SelectionSystem.Selected.Position, cellPosition))
+                    if (SwappingSystem.Swap(_grid, SelectionSystem.Selected.Position, cellPosition))
                     {
-                        _swaped = true; //TODO
+                        _swaped = true;
                         SelectionSystem.Deselect();
                         AnimationSystem.Start();
+                    }
+                    else
+                    {
+                        SelectionSystem.Deselect();
                     }
                 }
             }

@@ -11,30 +11,35 @@ namespace Match_3.Realization
             AnimationSystem = animationSystem;
         }
 
-
-        public Cell Selected { get; private set; }
-
         protected IAnimationSystem AnimationSystem { get; }
+
+        protected Cell FirstSwapped { get; private set; }
+        protected Cell SecondSwapped { get; private set; }
 
 
         public bool Swap(GameGrid grid, Vector2Int first, Vector2Int second)
         {
-            var firstCell = grid[first];
-            var secondCell = grid[second];
+            FirstSwapped = grid[first];
+            SecondSwapped = grid[second];
 
             var dir = first - second;
 
 
             if (Math.Abs(dir.X) + Math.Abs(dir.Y) == 1)
             {
-                SwapSuccessfuly(firstCell, secondCell);
+                SwapSuccessfuly(FirstSwapped, SecondSwapped);
                 return true;
             }
             else
             {
-                SwapFailed(firstCell, secondCell);
+                SwapFailed(FirstSwapped, SecondSwapped);
                 return false;
             }
+        }
+
+        public void FailLastSwap(GameGrid grid)
+        {
+            SwapSuccessfuly(FirstSwapped, SecondSwapped);
         }
 
         private void SwapSuccessfuly(Cell first, Cell second)
@@ -46,7 +51,7 @@ namespace Match_3.Realization
 
         private void SwapFailed(Cell first, Cell second)
         {
-            AnimationSystem.AnimateFailedSwap(first.ContainedGem, second.ContainedGem);
+            //AnimationSystem.AnimateFailedSwap(first.ContainedGem, second.ContainedGem);
         }
 
         private static void SwapGems(Cell first, Cell second)
